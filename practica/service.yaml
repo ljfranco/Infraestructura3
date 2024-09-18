@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: bulletin # Nombre del servicio
+spec:
+  type: NodePort # Expone el servicio en cada nodo del clúster
+  selector:
+    app: bulletin # El nombre de los pods a agrupar
+  ports:
+    - protocol: TCP
+      port: 80 # Puerto del servicio
+      targetPort: 8080 # Puerto del pod
+      nodePort: 30000 # Puerto en el que se expondrá el servicio en cada nodo. Este parámetro se utiliza cuando el servicio es del tipo NodePort. Es un valor entre 30000-32767

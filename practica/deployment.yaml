@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bulletin # Nombre del deployment
+spec:
+  replicas: 2 # Cantidad de Pods que se van a ejecutar
+  selector: # Se especifica a qué pod se va a relacionar este deployment
+    matchLabels:
+      app: bulletin # Tiene que ser el mismo label que se especifica para el pod en la sección de labels
+  template:
+    metadata:
+      labels:
+        app: bulletin # Nombre del pod que se va a desplegar
+    spec:
+      containers:
+        - name: bulletin # Nombre del contenedor
+          image: demonccc/bulletin-board-app:latest # Imagen de Docker a utilizar
+          ports:
+            - containerPort: 8080 # Puerto donde escucha el contenedor
